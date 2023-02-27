@@ -1,17 +1,25 @@
 import { COLOR_CHANGE, STATUS_CHANGE } from "./actionTypes";
 
-export type FilterAction =
-  | { type: string; payload: { status: string } }
-  | { type: string; payload: { color: string; changeType: string } };
+export interface FilterAction {
+  type: string;
+  payload: {
+    status?: string;
+    color?: string;
+    changeType?: string;
+  };
+}
 
-export const filteredByStatus = (status: string): object => ({
+export const filteredByStatus = (status: string): FilterAction => ({
   type: STATUS_CHANGE,
   payload: {
     status,
   },
 });
 
-export const filteredByColor = (color: string, changeType: string): object => ({
+export const filteredByColor = (
+  color: string,
+  changeType: string
+): FilterAction => ({
   type: COLOR_CHANGE,
   payload: {
     color,
